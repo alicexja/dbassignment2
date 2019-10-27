@@ -1,0 +1,54 @@
+SHOW DATABASES;
+DROP DATABASE IF EXISTS 251086706assign2db;
+CREATE DATABASE 251086706assign2db;
+USE 251086706assign2db;
+
+GRANT USAGE ON *.* TO 'ta'@'localhost';
+DROP USER 'ta'@'localhost';
+CREATE USER 'ta'@'localhost' IDENTIFIED BY 'cs3319';
+GRANT ALL PRIVILEGES ON yourwesternuseridassign2db.* TO 'ta'@'localhost';
+FLUSH PRIVILEGES;
+
+SHOW TABLES;
+
+CREATE TABLE doctor (
+licenseno VARCHAR(4) NOT NULL, 
+fname VARCHAR(20),
+lname VARCHAR(20),
+specialty VARCHAR(30),
+licenseDate DATE,
+worksin VARCHAR(3),
+PRIMARY KEY (licenseno)
+);
+
+CREATE TABLE patient (
+ohipno CHAR(9) NOT NULL, 
+fname VARCHAR(20),
+lname VARCHAR(20), 
+PRIMARY KEY (ohipno)
+);
+
+CREATE TABLE hospital (
+hcode VARCHAR(3) NOT NULL, 
+hname VARCHAR(20),
+hcity VARCHAR(20), 
+hprovince VARCHAR(2), 
+numBeds INT, 
+headStartedDate DATE, 
+head VARCHAR(4), 
+FOREIGN KEY (head) REFERENCES doctor(licenseno),
+PRIMARY KEY (hcode)
+);
+
+CREATE TABLE treating (
+doc VARCHAR(4) NOT NULL, 
+patient CHAR(9) NOT NULL, 
+FOREIGN KEY (doc) REFERENCES doctor(licenseno) ON DELETE CASCADE, 
+FOREIGN KEY (patient) REFERENCES patient(ohipno), 
+PRIMARY KEY(doc,patient)
+);
+
+ALTER TABLE doctor
+ADD FOREIGN KEY (worksin) REFERENCES hospital (hcode);
+
+SHOW TABLES;

@@ -1,0 +1,57 @@
+USE 251086706assign2db;
+-- query 1
+SELECT lname FROM patient;
+
+-- query2
+SELECT DISTINCT(lname) FROM patient;
+
+-- query3
+SELECT * FROM doctor ORDER BY lname;
+
+-- query4
+SELECT hname,hcode FROM hospital WHERE numBeds>1500;
+
+-- query5
+SELECT fname,lname 
+FROM doctor d, hospital h 
+WHERE d.worksin = h.hcode AND h.hname = "St. Joseph";
+
+-- query6
+SELECT fname,lname
+FROM patient
+WHERE lname LIKE "G%";
+
+-- query7
+SELECT p.fname,p.lname
+FROM patient p, treating t, doctor d
+WHERE p.ohipno=t.patient AND t.doc=d.licenseno AND d.lname="Clooney";
+
+-- query 8
+SELECT hname,hcity,lname
+FROM hospital h,doctor d
+WHERE h.head = d.licenseno;
+
+-- query9
+SELECT SUM(numBeds) AS "Total Number of Beds"
+FROM hospital;
+
+-- query10
+SELECT p.fname AS "Patient First Name", d.fname AS "Doctor First Name"
+FROM patient p, doctor d,hospital h, treating t
+WHERE h.head = d.licenseno AND t.doc = d.licenseno AND t.patient = p.ohipno;
+
+-- query11
+SELECT fname,lname
+FROM doctor d, hospital h
+WHERE d.worksin=h.hcode AND h.hname="Victoria" AND d.specialty="Surgeon";
+
+-- query12
+SELECT fname
+FROM doctor d, treating t
+WHERE d.licenseno NOT IN  t.doc;
+
+-- query13
+SELECT fname,lname
+FROM doctor 
+WHERE licenseno IN
+(SELECT doc FROM treating GROUP BY doc HAVING COUNT(patient) > 1);

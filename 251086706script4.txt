@@ -1,0 +1,25 @@
+USE 251086706assign2db;
+DELETE FROM doctor
+WHERE licenseDate<"1965-01-01";
+
+CREATE VIEW mv AS 
+SELECT p.fname as "patient firstname",p.lname as "patient lastname",d.lname as "doctor lastname",h.hname as "hospital name"
+FROM patient p,hospital h,treating t,doctor d
+WHERE h.head=d.licenseno AND h.headStartedDate>"1995-12-31" AND t.doc=d.licenseno AND t.patient=p.ohipno;
+SELECT * FROM mv;
+
+SELECT * FROM doctor;
+SELECT * FROM treating;
+
+DELETE FROM doctor
+WHERE lname="Clooney";
+
+SELECT * FROM doctor;
+-- in treating, every record with this deleted doctor is deleted.This is because cascade deleting.
+
+SELECT * FROM doctor;
+
+DELETE FROM doctor 
+WHERE specialty="Surgeon";
+
+ 

@@ -1,0 +1,57 @@
+USE 251086706assign2db;
+LOAD DATA LOCAL INFILE 'patient.txt' 
+INTO TABLE patient
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n';
+
+SELECT * FROM patient;
+INSERT INTO patient VALUES (123456789,'Gia','Xue');
+SELECT * FROM patient;
+
+SELECT * FROM doctor;
+INSERT INTO doctor VALUES ("RD34","Bernie","Kavorikian","Urologist","1980-09-09",NULL);
+INSERT INTO doctor VALUES ("GD56","Joey","Shabado","Podiatrist","1960-06-04",NULL);
+INSERT INTO doctor VALUES ("HT45","Ross","Clooney","Surgeon","1987-06-20",NULL);
+INSERT INTO doctor VALUES ("YT67","Ben","Spock","Pediatrician","1955-02-20",NULL);
+INSERT INTO doctor VALUES ("JK78","Mandy","Webster","Surgeon","1990-08-08",NULL);
+INSERT INTO doctor VALUES ("SE66","Colleen","Aziz","Surgeon","1989-08-24",NULL);
+INSERT INTO doctor VALUES ("GA11","Xiaoxia","Wang","Surgeon","1996-05-21",NULL);
+SELECT * FROM doctor;
+
+SELECT * FROM hospital;
+INSERT INTO hospital VALUES ("BBC","St. Joseph","London","On",1000,"1999-09-10","GD56" );
+INSERT INTO hospital VALUES ("ABC","Victoria","London","On",1600,"1997-12-07","SE66");
+INSERT INTO hospital VALUES ("DDE","Victoria","Victoria","BC",1200, "1997-12-07","YT67");
+SELECT * FROM hospital;
+
+SELECT * FROM treating;
+INSERT INTO treating VALUES ("GD56",110112113);
+INSERT INTO treating VALUES ("HT45",444555666);
+INSERT INTO treating VALUES ("JK78",444555666);
+INSERT INTO treating VALUES ("SE66",111222333);
+INSERT INTO treating VALUES ("YT67",111222333);
+INSERT INTO treating VALUES ("JK78",111222333);
+INSERT INTO treating VALUES ("GD56",333444555);
+INSERT INTO treating VALUES ("YT67",667766777);
+INSERT INTO treating VALUES ("GD56",667766777);
+INSERT INTO treating VALUES ("JK78",667766777);
+INSERT INTO treating VALUES ("YT67",111222111);
+INSERT INTO treating VALUES ("GA11",123456789);
+SELECT * FROM treating;
+
+SELECT * FROM doctor;
+UPDATE doctor SET worksin="BBC" WHERE licenseno IN ("RD34","GD56","JK78");
+UPDATE doctor SET worksin="DDE" WHERE licenseno IN ("HT45","YT67");
+UPDATE doctor SET worksin="ABC" WHERE licenseno IN ("GA11","SE66");
+SELECT * FROM doctor;
+
+SELECT * FROM patient;
+UPDATE patient SET lname="Brown" WHERE ohipno=111222111;
+SELECT * FROM patient;
+
+
+SELECT * FROM treating;
+UPDATE treating
+SET doc ="HT45"
+WHERE doc="YT67";
+SELECT * FROM treating;
