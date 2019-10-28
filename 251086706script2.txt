@@ -51,7 +51,7 @@ SELECT * FROM patient;
 
 
 SELECT * FROM treating;
-UPDATE treating
-SET doc ="HT45"
-WHERE doc="YT67";
+UPDATE treating t, doctor d1,doctor d2  
+SET t.doc = d2.licenseno
+WHERE t.doc = d1.licenseno AND d1.lname = 'Spock' AND d2.lname = "Clooney";
 SELECT * FROM treating;
