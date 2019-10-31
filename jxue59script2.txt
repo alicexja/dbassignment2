@@ -1,4 +1,4 @@
-USE 251086706assign2db;
+USE jxue59assign2db;
 LOAD DATA LOCAL INFILE 'patient.txt' 
 INTO TABLE patient
 FIELDS TERMINATED BY ','
@@ -55,3 +55,5 @@ UPDATE treating t, doctor d1,doctor d2
 SET t.doc = d2.licenseno
 WHERE t.doc = d1.licenseno AND d1.lname = 'Spock' AND d2.lname = "Clooney";
 SELECT * FROM treating;
+
+

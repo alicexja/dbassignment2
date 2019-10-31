@@ -1,12 +1,12 @@
 SHOW DATABASES;
-DROP DATABASE IF EXISTS 251086706assign2db;
-CREATE DATABASE 251086706assign2db;
-USE 251086706assign2db;
+DROP DATABASE IF EXISTS jxue59assign2db;
+CREATE DATABASE jxue59assign2db;
+USE jxue59assign2db;
 
 GRANT USAGE ON *.* TO 'ta'@'localhost';
 DROP USER 'ta'@'localhost';
 CREATE USER 'ta'@'localhost' IDENTIFIED BY 'cs3319';
-GRANT ALL PRIVILEGES ON yourwesternuseridassign2db.* TO 'ta'@'localhost';
+GRANT ALL PRIVILEGES ON jxue59assign2db.* TO 'ta'@'localhost';
 FLUSH PRIVILEGES;
 
 SHOW TABLES;

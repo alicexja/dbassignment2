@@ -1,4 +1,4 @@
-USE 251086706assign2db;
+USE jxue59assign2db;
 -- query 1
 SELECT lname FROM patient;
 
